@@ -12,6 +12,11 @@ module.exports = {
   },
 
   plugins: {
+    copy: {
+      targets: [
+        { src: 'src/index.html', dest: 'public' }
+      ]
+    },
     svelte: {
       // enable run-time checks when not in production
       dev: true,

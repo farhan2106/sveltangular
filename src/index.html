@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width'>
+
+	<title>Svelte app</title>
+
+	<link rel='icon' type='image/png' href='favicon.png'>
+	<link rel='stylesheet' href='bundle.css'>
+
+	<script>
+		if (window.import) {
+			import("/index.esm.js");
+		} else {
+			const systemJsLoaderTag = document.createElement('script');
+			systemJsLoaderTag.src = 'https://unpkg.com/systemjs@6.0.0/dist/s.min.js';
+			systemJsLoaderTag.addEventListener('load', function () {
+				System.import("/index.system.js");
+			});
+			document.head.appendChild(systemJsLoaderTag);
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>
