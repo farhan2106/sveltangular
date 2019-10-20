@@ -1,4 +1,4 @@
-import { preprocess } from "svelte-ts-preprocess";
+import autoPreprocess from 'svelte-preprocess'
 
 module.exports = {
   input: 'src/index.ts',
@@ -25,7 +25,7 @@ module.exports = {
       css: css => {
         css.write('public/bundle.css');
       },
-      preprocess: preprocess()
+      preprocess: autoPreprocess()
     },
     'node-resolve': {},
     commonjs: {}
