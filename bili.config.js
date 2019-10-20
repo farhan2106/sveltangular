@@ -6,7 +6,7 @@ module.exports = {
   bundleNodeModules: true,
 
   output: {
-    format: 'es',
+    format: ['es', 'system'],
     target: 'browser',
     dir: 'public'
   },
