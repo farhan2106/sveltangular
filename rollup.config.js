@@ -15,7 +15,7 @@ export default {
   output: {
     dir: 'public',
     sourcemap: true,
-    format: 'system',
+    format: 'esm',
     name: "app",
   },
   plugins: [
