@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "bili",
-    "autobuild": "bili --watch",
+    "build": "rollup -c",
+    "autobuild": "rollup -c -w",
     "prebuild": "rimraf public",
     "dev": "run-p prebuild start:dev autobuild",
     "start:dev": "sirv public --dev",
@@ -16,21 +16,27 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
     "@babel/preset-env": "^7.6.3",
     "@pyoner/svelte-types": "^3.4.4-2",
     "babel-jest": "^24.9.0",
-    "bili": "^4.8.1",
     "jest": "^24.9.0",
     "jest-transform-svelte": "^2.1.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
+    "rollup": "^1.25.1",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-copy-glob": "^0.3.1",
+    "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.1.0",
+    "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.24.3",
     "sirv-cli": "^0.4.4",
-    "svelte-preprocess": "^3.1.2"
+    "svelte-preprocess": "^3.1.2",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "core-js": "^3.3.2",
@@ -39,7 +45,6 @@
     "svelte-routing": "^1.4.0"
   },
   "browserslist": [
-    "> 0.25%",
-    "not dead"
+    "ie 11"
   ]
 }

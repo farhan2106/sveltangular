@@ -9,14 +9,16 @@
 	<link rel='icon' type='image/png' href='favicon.png'>
 	<link rel='stylesheet' href='bundle.css'>
 
+	<!-- <script>
+		import('/index.js')
+	</script> -->
 	<script>
-		if (window.import) {
-			import("/index.esm.js");
-		} else {
+		document.write('<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=fetch%2CPromise%2CPromise.prototype.finally"><\/script>');
+		window.onload = function () {
 			const systemJsLoaderTag = document.createElement('script');
 			systemJsLoaderTag.src = 'https://unpkg.com/systemjs@6.0.0/dist/s.min.js';
 			systemJsLoaderTag.addEventListener('load', function () {
-				System.import("/index.system.js");
+				System.import("/index.js");
 			});
 			document.head.appendChild(systemJsLoaderTag);
 		}
