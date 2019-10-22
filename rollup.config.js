@@ -1,3 +1,4 @@
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 import copy from 'rollup-plugin-copy-glob';
 import babel from "rollup-plugin-babel";
 import svelte from "rollup-plugin-svelte";
@@ -8,10 +9,10 @@ import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
 
-const production = !process.env.ROLLUP_WATCH;
+const production = true //!process.env.ROLLUP_WATCH;
 
 export default {
-  input: "src/index.ts",
+  input: "src/loader.ts",
   output: {
     dir: 'public',
     sourcemap: true,
@@ -22,12 +23,37 @@ export default {
     copy([
       { files: 'src/*.html', dest: 'public' }
     ]),
-    babel({
-      exclude: 'node_modules/**'
-    }),
+
+    // babel({
+    //   // babelrc: false,
+    //   // exclude: 'node_modules/**',
+    //   extensions: [
+    //     ...DEFAULT_EXTENSIONS,
+    //     // '.ts',
+    //     // '.tsx'
+    //   ],
+    //   runtimeHelpers: true,
+    //   "presets": [
+    //     [
+    //       "@babel/preset-env",
+    //       {
+    //         "targets": {
+    //           "ie": "11"
+    //         },
+    //         "useBuiltIns": "usage",
+    //         "corejs": 3
+    //       }
+    //     ]
+    //   ],
+    //   "plugins": [
+    //     // "@babel/transform-async-to-generator",
+    //     "@babel/transform-arrow-functions",
+    //     // "@babel/transform-modules-commonjs"
+    //   ],
+    // }),
+
     svelte({
       legacy: production,
-      // enable run-time checks when not in production
       // enable run-time checks when not in production
       dev: !production,
       // we'll extract any component CSS out into
@@ -57,7 +83,7 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    // production && terser()
   ],
   watch: {
     clearScreen: false

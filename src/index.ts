@@ -1,3 +1,4 @@
+// import '@webcomponents/custom-elements';
 import App from './App.svelte';
 
 import('./App.svelte')

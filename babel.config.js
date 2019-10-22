@@ -3,6 +3,9 @@ module.exports = {
     [
       "@babel/preset-env",
       {
+        "targets": {
+          "ie": "11"
+        },
         "forceAllTransforms": true,
         "useBuiltIns": "usage",
         "corejs": 3
@@ -10,6 +13,8 @@ module.exports = {
     ]
   ],
   "plugins": [
-    ["@babel/plugin-transform-arrow-functions", { "spec": true }]
-  ]
+    "@babel/transform-async-to-generator",
+    "@babel/transform-arrow-functions",
+    "@babel/transform-modules-commonjs"
+  ],
 }

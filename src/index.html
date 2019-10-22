@@ -10,23 +10,31 @@
 	<link rel='stylesheet' href='bundle.css'>
 
 	<!-- Load the "module" version on browsers that can support it. -->
-	<script type="module" src="https://unpkg.com/dimport?module" data-main="/index.js"></script>
+	<!-- <script type="module" src="https://unpkg.com/dimport?module" data-main="/index.js"></script> -->
 	<!-- Load the "nomodule" version on older browsers – acts as fallback! -->
-	<script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/index.js"></script>
+	<!-- <script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/index.js"></script> -->
+
 	<!-- <script>
 		import('/index.js')
 	</script> -->
+	
 	<!-- <script>
-		document.write('<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=fetch%2CPromise%2CPromise.prototype.finally"><\/script>');
-		window.onload = function () {
-			const systemJsLoaderTag = document.createElement('script');
-			systemJsLoaderTag.src = 'https://unpkg.com/systemjs@6.0.0/dist/system.min.js';
-			systemJsLoaderTag.addEventListener('load', function () {
-				System.import("/index.js");
-			});
-			document.head.appendChild(systemJsLoaderTag);
+		if (typeof Promise === 'undefined') {
+			document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
 		}
+		if (typeof fetch === 'undefined') {
+			document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
+		}
+	</script>
+	<script src="https://unpkg.com/systemjs@6.0.0/dist/system.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"></script>
+	<script>
+		window.addEventListener('load', function (e) {
+			System.import("/index.js");
+		});
 	</script> -->
+
+	<script src="./loader.js"></script>
 </head>
 
 <body>
