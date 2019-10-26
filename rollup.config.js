@@ -8,84 +8,100 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
+import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
 
 const production = true //!process.env.ROLLUP_WATCH;
 
-export default {
-  input: "src/loader.ts",
-  output: {
-    dir: 'public',
-    sourcemap: true,
-    format: 'esm',
-    name: "app",
+const getPlugins = () => [
+  copy([
+    { files: 'src/*.html', dest: 'public' }
+  ]),
+
+  babel({
+    babelrc: false,
+    // extensions: [
+    //   ...DEFAULT_EXTENSIONS,
+    //   '.ts',
+    //   '.tsx'
+    // ],
+    "exclude": [ 'node_modules/**' ],
+    "include": [ 'node_modules/svelte/**' ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "ie": "11"
+          },
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/transform-async-to-generator",
+      "@babel/transform-arrow-functions",
+      "@babel/transform-modules-commonjs"
+    ],
+  }),
+
+  svelte({
+    legacy: production,
+    // enable run-time checks when not in production
+    dev: !production,
+    // we'll extract any component CSS out into
+    // a separate file — better for performance
+    css: css => {
+      css.write("public/bundle.css");
+    },
+    preprocess: autoPreprocess()
+  }),
+
+  // If you have external dependencies installed from
+  // npm, you'll most likely need these plugins. In
+  // some cases you'll need additional configuration —
+  // consult the documentation for details:
+  // https://github.com/rollup/rollup-plugin-commonjs
+  resolve({
+    browser: true,
+    dedupe: importee =>
+      importee === "svelte" || importee.startsWith("svelte/")
+  }),
+  commonjs(),
+  typescript(),
+
+  // Watch the `public` directory and refresh the
+  // browser on changes when not in production
+  !production && livereload("public"),
+
+  // If we're building for production (npm run build
+  // instead of npm run dev), minify
+  // production && terser()
+]
+
+export default [
+  {
+    input: 'src/index.ts',
+    output: {
+      dir: 'public/system',
+      sourcemap: true,
+      format: 'system'
+    },
+    plugins: getPlugins(),
+    watch: {
+      clearScreen: false
+    }
   },
-  plugins: [
-    copy([
-      { files: 'src/*.html', dest: 'public' }
-    ]),
-
-    // babel({
-    //   // babelrc: false,
-    //   // exclude: 'node_modules/**',
-    //   extensions: [
-    //     ...DEFAULT_EXTENSIONS,
-    //     // '.ts',
-    //     // '.tsx'
-    //   ],
-    //   runtimeHelpers: true,
-    //   "presets": [
-    //     [
-    //       "@babel/preset-env",
-    //       {
-    //         "targets": {
-    //           "ie": "11"
-    //         },
-    //         "useBuiltIns": "usage",
-    //         "corejs": 3
-    //       }
-    //     ]
-    //   ],
-    //   "plugins": [
-    //     // "@babel/transform-async-to-generator",
-    //     "@babel/transform-arrow-functions",
-    //     // "@babel/transform-modules-commonjs"
-    //   ],
-    // }),
-
-    svelte({
-      legacy: production,
-      // enable run-time checks when not in production
-      dev: !production,
-      // we'll extract any component CSS out into
-      // a separate file — better for performance
-      css: css => {
-        css.write("public/bundle.css");
-      },
-      preprocess: autoPreprocess()
-    }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration —
-    // consult the documentation for details:
-    // https://github.com/rollup/rollup-plugin-commonjs
-    resolve({
-      browser: true,
-      dedupe: importee =>
-        importee === "svelte" || importee.startsWith("svelte/")
-    }),
-    commonjs(),
-    typescript(),
-
-    // Watch the `public` directory and refresh the
-    // browser on changes when not in production
-    !production && livereload("public"),
-
-    // If we're building for production (npm run build
-    // instead of npm run dev), minify
-    // production && terser()
-  ],
-  watch: {
-    clearScreen: false
-  }
-};
+  // {
+  //   input: 'src/index.ts',
+  //   output: {
+  //     dir: 'public/esm',
+  //     sourcemap: true,
+  //     format: 'esm', // 'esm' is for browser that support import()
+  //   },
+  //   plugins: getPlugins(),
+  //   watch: {
+  //     clearScreen: false
+  //   }
+  // }
+];

@@ -8,33 +8,40 @@
 
 	<link rel='icon' type='image/png' href='favicon.png'>
 	<link rel='stylesheet' href='bundle.css'>
-
-	<!-- Load the "module" version on browsers that can support it. -->
-	<!-- <script type="module" src="https://unpkg.com/dimport?module" data-main="/index.js"></script> -->
-	<!-- Load the "nomodule" version on older browsers – acts as fallback! -->
-	<!-- <script nomodule defer src="https://unpkg.com/dimport/nomodule" data-main="/index.js"></script> -->
-
-	<!-- <script>
-		import('/index.js')
-	</script> -->
 	
 	<!-- <script>
+		if ('noModule' in HTMLScriptElement.prototype) {
+			import('/esm/index.js')
+		} else {
+
+		}
+	</script> -->
+
+	<script>
 		if (typeof Promise === 'undefined') {
 			document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
 		}
 		if (typeof fetch === 'undefined') {
 			document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
 		}
+		document.write('<script src="https://unpkg.com/systemjs@6.0.0/dist/s.min.js"><\/script>');
+		// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"><\/script>');
+		window.onload = function (e) {
+			System.import("/system/index.js");
+		};
 	</script>
-	<script src="https://unpkg.com/systemjs@6.0.0/dist/system.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"></script>
-	<script>
-		window.addEventListener('load', function (e) {
-			System.import("/index.js");
-		});
-	</script> -->
 
-	<script src="./loader.js"></script>
+
+	<!-- <script src="https://unpkg.com/getlibs"></script>
+	<script>
+    System.import('./system/index.js');
+	</script>  -->
+	
+
+	<!-- <script type="module" src="/esm/index.js"></script>
+	<script type="nomodule" src="/esm/index.js"></script> -->
+
+
 </head>
 
 <body>

@@ -1,4 +1,5 @@
 module.exports = {
+  "exclude": [ 'node_modules/@babel/**', 'node_modules/core-js/**' ],
   "presets": [
     [
       "@babel/preset-env",
@@ -6,8 +7,7 @@ module.exports = {
         "targets": {
           "ie": "11"
         },
-        "forceAllTransforms": true,
-        "useBuiltIns": "usage",
+        "useBuiltIns": "entry",
         "corejs": 3
       }
     ]
