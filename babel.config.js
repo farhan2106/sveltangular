@@ -1,13 +1,11 @@
 module.exports = {
-  "exclude": [ 'node_modules/@babel/**', 'node_modules/core-js/**' ],
+  // "exclude": [ 'node_modules/**' ],
+  // "include": [ 'node_modules/svelte/**' ],
   "presets": [
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "ie": "11"
-        },
-        "useBuiltIns": "entry",
+        "useBuiltIns": "usage",
         "corejs": 3
       }
     ]
@@ -15,6 +13,7 @@ module.exports = {
   "plugins": [
     "@babel/transform-async-to-generator",
     "@babel/transform-arrow-functions",
-    "@babel/transform-modules-commonjs"
+    "@babel/transform-modules-commonjs",
+    "@babel/plugin-transform-parameters"
   ],
 }

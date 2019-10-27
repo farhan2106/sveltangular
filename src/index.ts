@@ -1,19 +1,15 @@
-// import 'core-js'
+import 'core-js'
+import 'regenerator-runtime/runtime';
 import '@webcomponents/custom-elements';
 
-try {
-  import('./App.svelte')
-    .then(module => module.default) // using the default export
-    .then(App => {
-      alert('asdas')
-      new App({
-        target: document.body,
-        props: {
-          name: 'world'
-        }
-      });
-    })
+import('./App.svelte')
+  .then(module => module.default) // using the default export
+  .then(App => {
+    new App({
+      target: document.body,
+      props: {
+        name: 'world'
+      }
+    });
+  })
   .catch(e => console.error(e.description));
-} catch (e) {
-  console.error(e.description)
-}

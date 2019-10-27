@@ -1,4 +1,3 @@
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import copy from 'rollup-plugin-copy-glob';
 import babel from "rollup-plugin-babel";
 import svelte from "rollup-plugin-svelte";
@@ -8,42 +7,16 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
-import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
 
 const production = true //!process.env.ROLLUP_WATCH;
 
 const getPlugins = () => [
   copy([
-    { files: 'src/*.html', dest: 'public' }
-  ]),
+    { files: 'src/*.html', dest: 'public' },
+    { files: 'src/common.min.js', dest: 'public' }
+  ], { verbose: true, watch: true }),
 
-  babel({
-    babelrc: false,
-    // extensions: [
-    //   ...DEFAULT_EXTENSIONS,
-    //   '.ts',
-    //   '.tsx'
-    // ],
-    "exclude": [ 'node_modules/**' ],
-    "include": [ 'node_modules/svelte/**' ],
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "ie": "11"
-          },
-          "useBuiltIns": "usage",
-          "corejs": 3
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/transform-async-to-generator",
-      "@babel/transform-arrow-functions",
-      "@babel/transform-modules-commonjs"
-    ],
-  }),
+  // babel(),
 
   svelte({
     legacy: production,
@@ -83,9 +56,9 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      dir: 'public/system',
+      dir: 'public/commonjs',
       sourcemap: true,
-      format: 'system'
+      format: 'commonjs'
     },
     plugins: getPlugins(),
     watch: {
