@@ -1,11 +1,9 @@
 module.exports = {
-  // "exclude": [ 'node_modules/**' ],
-  // "include": [ 'node_modules/svelte/**' ],
   "presets": [
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "usage",
+        "useBuiltIns": "entry",
         "corejs": 3
       }
     ]

@@ -7,16 +7,21 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
+const babelConfig = require('./babel.config');
 
 const production = true //!process.env.ROLLUP_WATCH;
 
-const getPlugins = () => [
-  copy([
-    { files: 'src/*.html', dest: 'public' },
-    { files: 'src/common.min.js', dest: 'public' }
+const getPlugins = (withCopy = false) => [
+  withCopy && copy([
+    { files: 'src/*.html', dest: 'public' }
   ], { verbose: true, watch: true }),
 
-  // babel(),
+  babel({
+    babelrc: false,
+    ...babelConfig.default,
+    "exclude": [ 'node_modules/**' ],
+    "include": [ 'node_modules/svelte/**' ],
+  }),
 
   svelte({
     legacy: production,
@@ -56,25 +61,25 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      dir: 'public/commonjs',
+      dir: 'public/system',
       sourcemap: true,
-      format: 'commonjs'
+      format: 'system'
     },
     plugins: getPlugins(),
     watch: {
       clearScreen: false
     }
   },
-  // {
-  //   input: 'src/index.ts',
-  //   output: {
-  //     dir: 'public/esm',
-  //     sourcemap: true,
-  //     format: 'esm', // 'esm' is for browser that support import()
-  //   },
-  //   plugins: getPlugins(),
-  //   watch: {
-  //     clearScreen: false
-  //   }
-  // }
+  {
+    input: 'src/index.ts',
+    output: {
+      dir: 'public/esm',
+      sourcemap: true,
+      format: 'esm', // 'esm' is for browser that support import()
+    },
+    plugins: getPlugins(true),
+    watch: {
+      clearScreen: false
+    }
+  }
 ];

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "rebabel": "babel public --out-dir public",
+    "minify": "terser-folder public/ -x .js -e -o public",
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "prebuild": "rimraf public",
@@ -21,8 +23,6 @@
     "@babel/plugin-transform-parameters": "^7.4.4",
     "@babel/preset-env": "^7.6.3",
     "@pyoner/svelte-types": "^3.4.4-2",
-    "@swc/cli": "^0.1.18",
-    "@swc/core": "^1.0.47",
     "@types/node": "^12.11.2",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
@@ -42,6 +42,7 @@
     "rollup-plugin-typescript2": "^0.24.3",
     "sirv-cli": "^0.4.4",
     "svelte-preprocess": "^3.1.2",
+    "terser-folder": "^2.0.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {

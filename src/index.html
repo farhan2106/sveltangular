@@ -9,7 +9,8 @@
 	<link rel='icon' type='image/png' href='favicon.png'>
 	<link rel='stylesheet' href='bundle.css'>
 
-	<!-- <script>
+	<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<script>
 		if (typeof Promise === 'undefined') {
 			document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
 		}
@@ -19,23 +20,9 @@
 		document.write('<script src="https://unpkg.com/systemjs@6.0.0/dist/s.min.js"><\/script>');
 		document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"><\/script>');
 		window.onload = function (e) {
-			System.import("/system-min/index.js");
+			System.import("/system/index.js");
 		};
-	</script> -->
-
-	<script>
-		if (typeof Promise === 'undefined') {
-			document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
-		}
-		if (typeof fetch === 'undefined') {
-			document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
-		}
-	</script> 
-	<script id="common-js" src="/common.min.js" data-main="/commonjs/index.js"></script>
-
-	<!-- <script type="module" src="/esm/index.js"></script>
-	<script type="nomodule" src="/esm/index.js"></script> -->
-
+	</script>
 
 </head>
 
