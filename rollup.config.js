@@ -4,17 +4,16 @@ import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
-import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
 const babelConfig = require('./babel.config');
 
-const production = true //!process.env.ROLLUP_WATCH;
+const production = process.env.NODE_ENV === 'production' || process.env.ROLLUP_WATCH === undefined;
 
 const getPlugins = (withCopy = false) => [
   withCopy && copy([
     { files: 'src/*.html', dest: 'public' }
-  ], { verbose: true, watch: true }),
+  ], { verbose: !production, watch: !production }),
 
   babel({
     babelrc: false,
@@ -50,11 +49,7 @@ const getPlugins = (withCopy = false) => [
 
   // Watch the `public` directory and refresh the
   // browser on changes when not in production
-  !production && livereload("public"),
-
-  // If we're building for production (npm run build
-  // instead of npm run dev), minify
-  // production && terser()
+  !production && livereload("public")
 ]
 
 export default [
