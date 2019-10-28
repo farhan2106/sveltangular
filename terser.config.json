@@ -1,6 +1,6 @@
 {
   "sourceMap": {
-    "root": "src",
+    "root": ".",
     "url": "{file}.map"
   }
 }
