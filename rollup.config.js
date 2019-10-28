@@ -4,6 +4,7 @@ import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
+import sassModules from 'rollup-plugin-sass-modules';
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
 const babelConfig = require('./babel.config');
@@ -20,6 +21,18 @@ const getPlugins = (withCopy = false) => [
     ...babelConfig.default,
     "exclude": [ 'node_modules/**' ],
     "include": [ 'node_modules/svelte/**' ],
+  }),
+
+  sassModules({
+    include: ['**/*.scss', '**/*.sass'],
+    exclude: [],
+    options: {
+      includePaths: [ 'node_modules/' ],
+      importer(path) {
+        console.log(path)
+        return { file: path[0] !== '~' ? path : path.slice(1) };
+      }
+    }
   }),
 
   svelte({
@@ -44,7 +57,7 @@ const getPlugins = (withCopy = false) => [
     dedupe: importee =>
       importee === "svelte" || importee.startsWith("svelte/")
   }),
-  commonjs(),
+  commonjs({ extensions: ['.js', '.ts'] }),
   typescript(),
 
   // Watch the `public` directory and refresh the

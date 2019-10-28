@@ -1,6 +1,7 @@
 import 'core-js'
 import 'regenerator-runtime/runtime';
 import '@webcomponents/custom-elements';
+import './assets/styles/main.sass';
 import App from './App.svelte'
 
 // import('./App.svelte')
