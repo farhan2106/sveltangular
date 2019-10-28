@@ -49,27 +49,14 @@ const getPlugins = (withCopy = false) => [
 
   // Watch the `public` directory and refresh the
   // browser on changes when not in production
-  !production && livereload("public")
+  !production && withCopy && livereload("public")
 ]
 
-export default [
-  {
-    input: 'src/index.ts',
-    output: {
-      dir: 'public/system',
-      sourcemap: true,
-      format: 'system'
-    },
-    plugins: getPlugins(),
-    watch: {
-      clearScreen: false
-    }
-  },
+const outputs = [
   {
     input: 'src/index.ts',
     output: {
       dir: 'public/esm',
-      sourcemap: true,
       format: 'esm', // 'esm' is for browser that support import()
     },
     plugins: getPlugins(true),
@@ -77,4 +64,18 @@ export default [
       clearScreen: false
     }
   }
-];
+]
+
+production && outputs.push({
+  input: 'src/index.ts',
+  output: {
+    dir: 'public/system',
+    format: 'system'
+  },
+  plugins: getPlugins(),
+  watch: {
+    clearScreen: false
+  }
+})
+
+export default outputs;

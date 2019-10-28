@@ -25,8 +25,8 @@
     <Route path="blog" component="{Blog}" />
     <Route path="entah"><Home apiService={asdasd} /></Route>
     -->
-    <!-- <Route path="about"><Loadable loader={() => import('./pages/AboutUs.svelte')} /></Route>
-    <Route path="/"><Loadable apiService={'asd'} loader={() => import('./pages/Home.svelte')} /></Route> -->
+    <Route path="about"><Loadable loader={() => import('./pages/AboutUs.svelte')} /></Route>
+    <Route path="/"><Loadable apiService={'asd'} loader={() => import('./pages/Home.svelte')} /></Route>
   </div>
 </Router>
 
