@@ -63,11 +63,11 @@ const getPlugins = (withCopy = false) => [
 
 const outputs = [
   {
-    input: 'src/index.ts',
+    input: 'src/index.es.ts',
     output: {
       sourcemap: 'inline',
       dir: 'public/esm',
-      format: 'esm', // 'esm' is for browser that support import()
+      format: 'esm',
     },
     plugins: getPlugins(true),
     watch: {

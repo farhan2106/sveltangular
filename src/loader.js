@@ -9,8 +9,8 @@ function supportsDynamicImport() {
   }
 }
 if (supportsDynamicImport()) {
-  document.write('<link rel="preload" href="esm/index.js" as="script">');
-  document.write('<script type="module" src="esm/index.js"><\/script>');
+  document.write('<link rel="preload" href="esm/index.es.js" as="script">');
+  document.write('<script type="module" src="esm/index.es.js"><\/script>');
 } else {
   document.write('<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"><\/script>');
   if (typeof Promise === 'undefined') {

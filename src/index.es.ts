@@ -1,9 +1,6 @@
 // babel-preset
-import 'core-js/stable';
+import 'core-js/es';
 import 'regenerator-runtime/runtime';
-
-// needed for ie 11
-import '@webcomponents/custom-elements';
 
 // app stuff
 import './assets/styles/main.sass';
