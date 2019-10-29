@@ -1,15 +1,16 @@
+"use strict";
 function supportsDynamicImport() {
   try {
     new Function('import("")');
     return true;
-  } catch (err) {
+  }
+  catch (err) {
     return false;
   }
 }
-
 if (supportsDynamicImport()) {
   document.write('<link rel="preload" href="esm/index.js" as="script">');
-  import('./esm/index.js');
+  document.write('<script type="module" src="esm/index.js"><\/script>');
 } else {
   document.write('<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"><\/script>');
   if (typeof Promise === 'undefined') {
