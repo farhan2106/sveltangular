@@ -1,4 +1,10 @@
 "use strict";
+
+function supportsStaticImport() {
+  const script = document.createElement('script');
+  return 'noModule' in script; 
+}
+
 function supportsDynamicImport() {
   try {
     new Function('import("")');
@@ -8,7 +14,8 @@ function supportsDynamicImport() {
     return false;
   }
 }
-if (supportsDynamicImport()) {
+
+if (supportsStaticImport()) {
   document.write('<link rel="preload" href="esm/index.es.js" as="script">');
   document.write('<script type="module" src="esm/index.es.js"><\/script>');
 } else {
