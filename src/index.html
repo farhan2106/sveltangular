@@ -1,44 +1,43 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hello Bulma!</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-	<title>Svelte app</title>
+  <title>Svelte app</title>
 
-	<link rel='icon' type='image/png' href='favicon.png'>
-	<link rel='stylesheet' href='bundle.css'>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="bundle.css">
 
-	<script>
-		function supportsDynamicImport() {
-			try {
-				new Function('import("")');
-				return true;
-			} catch (err) {
-				return false;
-			}
-		}
+  <script>
+    function supportsDynamicImport() {
+      try {
+        new Function('import("")');
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
 
-		if (supportsDynamicImport()) {
-			import('./esm/index.js');
-		} else {
-			document.write('<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"><\/script>');
-			if (typeof Promise === 'undefined') {
-				document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
-			}
-			if (typeof fetch === 'undefined') {
-				document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
-			}
-			document.write('<script src="https://unpkg.com/systemjs@6.0.0/dist/s.min.js"><\/script>');
-			document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"><\/script>');
-			window.onload = function (e) {
-				System.import("/system/index.js");
-			};
-		}
-	</script>
+    if (supportsDynamicImport()) {
+      import('./esm/index.js');
+    } else {
+      document.write('<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=default"><\/script>');
+      if (typeof Promise === 'undefined') {
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
+      }
+      if (typeof fetch === 'undefined') {
+        document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
+      }
+      document.write('<script src="https://unpkg.com/systemjs@6.0.0/dist/s.min.js"><\/script>');
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"><\/script>');
+      window.onload = function (e) {
+        System.import("/system/index.js");
+      };
+    }
+  </script>
 
 </head>
 

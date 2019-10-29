@@ -1,6 +1,7 @@
 <script>
   import { Router, Link, Route } from "svelte-routing";
   import Loadable from 'svelte-loadable'
+  import HomePage from './pages/Home.svelte'
   import SomeService from './services/SomeService'
 
   export let name;
@@ -28,6 +29,7 @@
   </div> -->
 
   <Route path="about"><Loadable loader={() => import('./pages/AboutUs.svelte')} /></Route>
-  <Route path="/"><Loadable apiService={SomeService()} loader={() => import('./pages/Home.svelte')} /></Route>
+  <!-- <Route path="/"><Loadable apiService={SomeService()} loader={() => import('./pages/Home.svelte')} /></Route> -->
+  <Route path="/"><HomePage /></Route>
 </Router>
 

@@ -24,14 +24,11 @@ const getPlugins = (withCopy = false) => [
   }),
 
   sassModules({
+    insert: true,
     include: ['**/*.scss', '**/*.sass'],
     exclude: [],
     options: {
-      includePaths: [ 'node_modules/' ],
-      importer(path) {
-        console.log(path)
-        return { file: path[0] !== '~' ? path : path.slice(1) };
-      }
+      includePaths: [ 'node_modules/' ]
     }
   }),
 
@@ -55,7 +52,7 @@ const getPlugins = (withCopy = false) => [
   resolve({
     browser: true,
     dedupe: importee =>
-      importee === "svelte" || importee.startsWith("svelte/")
+      importee === "svelte" || importee.startsWith("svelte/") || importee.startsWith("core-js") || importee.startsWith("core-js/")
   }),
   commonjs({ extensions: ['.js', '.ts'] }),
   typescript(),

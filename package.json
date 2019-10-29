@@ -6,11 +6,12 @@
   "scripts": {
     "rebabel": "babel public/system --out-dir public/system",
     "minify": "terser-folder --config-file 'terser.config.json' public/ -x .js -e -o public",
+    "gzip": "gzipper public",
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "prebuild": "rimraf public",
     "dev": "run-p prebuild start:dev autobuild",
-    "build:prod": "NODE_ENV=production run-s build rebabel minify",
+    "build:prod": "NODE_ENV=production run-s build rebabel minify gzip",
     "start:dev": "sirv public --dev",
     "start": "sirv public",
     "test": "jest"
@@ -26,6 +27,7 @@
     "@pyoner/svelte-types": "^3.4.4-2",
     "@types/node": "^12.11.2",
     "babel-jest": "^24.9.0",
+    "gzipper": "^3.3.0",
     "jest": "^24.9.0",
     "jest-transform-svelte": "^2.1.0",
     "npm-run-all": "^4.1.5",
