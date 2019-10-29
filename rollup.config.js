@@ -65,7 +65,7 @@ const outputs = [
   {
     input: 'src/index.ts',
     output: {
-      sourcemap: true,
+      sourcemap: 'inline',
       dir: 'public/esm',
       format: 'esm', // 'esm' is for browser that support import()
     },
@@ -79,7 +79,7 @@ const outputs = [
 production && outputs.push({
   input: 'src/index.ts',
   output: {
-    sourcemap: true,
+    sourcemap: 'inline',
     dir: 'public/system',
     format: 'system'
   },

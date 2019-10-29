@@ -1,6 +1,7 @@
 {
   "sourceMap": {
-    "root": ".",
+    "root": "./../",
+    "content": "inline",
     "url": "{file}.map"
   }
 }
