@@ -7,9 +7,22 @@ import livereload from "rollup-plugin-livereload";
 import scssModules from 'rollup-plugin-scss';
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
+import fs from 'fs';
+import postcss from 'postcss'
 const babelConfig = require('./babel.config');
 
 const production = process.env.NODE_ENV === 'production' || process.env.ROLLUP_WATCH === undefined;
+
+const postCssTransformer = async (input) => {
+  const postCssOpts = {
+    from: input.filename,
+    to: input.filename
+  }
+  const result = await postcss(require('./postcss.config')).process(input.content, postCssOpts)
+  return {
+    code: result.css.toString()
+  }
+}
 
 const getPlugins = (withCopy = false) => [
   withCopy && copy([
@@ -25,7 +38,11 @@ const getPlugins = (withCopy = false) => [
   }),
 
   scssModules({
-    output: withCopy && 'public/main.css',
+    output: async (styles, styleNodes) => {
+      const filename = 'public/main.css'
+      const { code } = await postCssTransformer({ filename, content: styles } )
+      withCopy && fs.writeFileSync(filename, code)
+    },
     include: ['**/*.scss', '**/*.sass'],
     exclude: [],
     includePaths: [ 'node_modules/' ]
@@ -33,10 +50,10 @@ const getPlugins = (withCopy = false) => [
 
   svelte({
     legacy: production,
-    // enable run-time checks when not in production
     dev: !production,
-    // we'll extract any component CSS out into
-    // a separate file — better for performance
+    preprocess: {
+      style: postCssTransformer
+    },
     css: css => {
       css.write('public/index.css');
     },
