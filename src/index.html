@@ -9,7 +9,9 @@
   <title>Svelte app</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="bundle.css">
+  <link rel="preload" href="index.css" as="style">
+  <link rel="preload" href="esm/index.js" as="script">
+  <link rel="stylesheet" href="index.css">
 
   <script>
     function supportsDynamicImport() {
