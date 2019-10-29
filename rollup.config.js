@@ -13,7 +13,8 @@ const production = process.env.NODE_ENV === 'production' || process.env.ROLLUP_W
 
 const getPlugins = (withCopy = false) => [
   withCopy && copy([
-    { files: 'src/*.html', dest: 'public' }
+    { files: 'src/*.html', dest: 'public' },
+    { files: 'src/loader.js', dest: 'public' }
   ], { verbose: !production, watch: !production }),
 
   babel({
@@ -24,7 +25,8 @@ const getPlugins = (withCopy = false) => [
   }),
 
   sassModules({
-    insert: true,
+    // insert: true,
+    output: 'bundle.css',
     include: ['**/*.scss', '**/*.sass'],
     exclude: [],
     options: {
@@ -39,7 +41,7 @@ const getPlugins = (withCopy = false) => [
     // we'll extract any component CSS out into
     // a separate file — better for performance
     css: css => {
-      css.write("public/index.css");
+      css.write('public/index.css');
     },
     preprocess: autoPreprocess()
   }),
