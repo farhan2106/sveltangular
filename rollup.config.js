@@ -4,7 +4,7 @@ import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
-import sassModules from 'rollup-plugin-sass-modules';
+import scssModules from 'rollup-plugin-scss';
 import typescript from "rollup-plugin-typescript2";
 import autoPreprocess from 'svelte-preprocess'
 const babelConfig = require('./babel.config');
@@ -24,14 +24,11 @@ const getPlugins = (withCopy = false) => [
     "include": [ 'node_modules/svelte/**' ],
   }),
 
-  sassModules({
-    // insert: true,
-    output: 'bundle.css',
+  scssModules({
+    output: withCopy && 'public/main.css',
     include: ['**/*.scss', '**/*.sass'],
     exclude: [],
-    options: {
-      includePaths: [ 'node_modules/' ]
-    }
+    includePaths: [ 'node_modules/' ]
   }),
 
   svelte({

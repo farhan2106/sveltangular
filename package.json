@@ -40,7 +40,7 @@
     "rollup-plugin-copy-glob": "^0.3.1",
     "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-sass-modules": "^1.4.0",
+    "rollup-plugin-scss": "^1.0.2",
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-typescript2": "^0.24.3",
     "sirv-cli": "^0.4.4",
