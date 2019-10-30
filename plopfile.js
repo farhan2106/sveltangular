@@ -34,4 +34,22 @@ module.exports = function (plop) {
       templateFile: '_templates/pages_test.hbs'
     }]
   });
+
+  plop.setGenerator('services', {
+    description: 'service is a broad category encompassing any value, function, or feature that an app needs.',
+    prompts: [{
+      type: 'input',
+      name: 'name',
+      message: 'services name please'
+    }],
+    actions: [{
+      type: 'add',
+      path: 'src/pages/{{name}}.svelte',
+      templateFile: '_templates/pages.hbs'
+    }, {
+      type: 'add',
+      path: 'src/pages/{{name}}.test.js',
+      templateFile: '_templates/pages_test.hbs'
+    }]
+  });
 };

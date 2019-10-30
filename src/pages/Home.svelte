@@ -1,11 +1,12 @@
-<script>
+<script lang="typescript">
+  import { getContext } from 'svelte';
   import Navbar from './../components/Navbar.svelte';
 
+  export let apiService: any;
+
   let foo;
-
-  export let apiService;
-
-  console.log(apiService)
+  const { getMap } = getContext('ioc');
+  console.log(apiService, getMap)
 </script>
 
 <template>

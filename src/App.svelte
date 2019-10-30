@@ -1,4 +1,5 @@
 <script>
+  import { setContext } from 'svelte';
   import { Router, Link, Route } from "svelte-routing";
   import Loadable from 'svelte-loadable'
   import HomePage from './pages/Home.svelte'
@@ -6,6 +7,10 @@
 
   export let name;
   export let url = "";
+
+  setContext('ioc', {
+    getMap: () => console.log('asdasdasdasd')
+  });
 </script>
 
 <style>
