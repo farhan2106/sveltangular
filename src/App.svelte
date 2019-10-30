@@ -9,9 +9,6 @@
 </script>
 
 <style>
-  h1 {
-    color: purple;
-  }
 </style>
 
 <Router url="{url}">
