@@ -26,8 +26,12 @@ module.exports = function (plop) {
     }],
     actions: [{
       type: 'add',
-      path: 'src/{{name}}.js',
-      templateFile: '_templates/controller.hbs'
+      path: 'src/pages/{{name}}.svelte',
+      templateFile: '_templates/pages.hbs'
+    }, {
+      type: 'add',
+      path: 'src/pages/{{name}}.test.js',
+      templateFile: '_templates/pages_test.hbs'
     }]
   });
 };

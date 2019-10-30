@@ -3,4 +3,6 @@
   let b: string;
 </script>
 
-<h1>About Us</h1>
+<template>
+  <h1>About Us</h1>
+</template>
