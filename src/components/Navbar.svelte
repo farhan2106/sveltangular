@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { link } from "svelte-routing";
+  import { link } from "svelte-routing";link;
 </script>
 
 <style>

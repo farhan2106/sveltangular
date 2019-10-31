@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import Navbar from './../components/Navbar.svelte';
+  import Navbar from './../components/Navbar.svelte';Navbar;
   export let apiService: any;
 </script>
 

@@ -30,7 +30,7 @@ const getPlugins = (withCopy = false) => [
     { files: 'src/loader.js', dest: 'public' }
   ], { verbose: !production, watch: !production }),
 
-  babel({
+  production && babel({
     babelrc: false,
     ...babelConfig.default,
     "exclude": [ 'node_modules/**' ],
@@ -68,9 +68,12 @@ const getPlugins = (withCopy = false) => [
   resolve({
     browser: true,
     dedupe: importee =>
-      importee === "svelte" || importee.startsWith("svelte/") || importee.startsWith("core-js") || importee.startsWith("core-js/")
+      importee === "svelte" ||
+      importee.startsWith("svelte/") ||
+      importee.startsWith("core-js") ||
+      importee.startsWith("core-js/")
   }),
-  commonjs({ extensions: ['.js', '.ts'] }),
+  commonjs({ extensions: ['.js', '.ts', '.svelte'] }),
   typescript(),
 
   // Watch the `public` directory and refresh the
