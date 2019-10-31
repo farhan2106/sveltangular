@@ -1,8 +1,15 @@
 <script lang="typescript">
-  let a: string;
-  let b: string;
+  import Navbar from './../components/Navbar.svelte';
+  export let apiService: any;
 </script>
 
 <template>
-  <h1>About Us</h1>
+  <Navbar />
+  <section class="section">
+    <div class="container is-fluid">
+      <div class="columns">
+        <h3>About Us</h3>
+      </div>
+    </div>
+  </section>
 </template>
