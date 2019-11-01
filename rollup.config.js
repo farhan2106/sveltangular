@@ -83,18 +83,18 @@ const getPlugins = (withCopy = false) => [
 ]
 
 const outputs = [
-  // {
-  //   input: 'src/index.es.ts',
-  //   output: {
-  //     sourcemap: true,
-  //     dir: 'public/esm',
-  //     format: 'esm',
-  //   },
-  //   plugins: getPlugins(true),
-  //   watch: {
-  //     clearScreen: false
-  //   }
-  // },
+  {
+    input: 'src/index.es.ts',
+    output: {
+      sourcemap: true,
+      dir: 'public/esm',
+      format: 'esm',
+    },
+    plugins: getPlugins(true),
+    watch: {
+      clearScreen: false
+    }
+  },
   {
     input: 'src/index.ts',
     output: {
@@ -103,7 +103,7 @@ const outputs = [
       format: 'system',
       strict: false
     },
-    plugins: getPlugins(true),
+    plugins: getPlugins(),
     watch: {
       clearScreen: false
     },
