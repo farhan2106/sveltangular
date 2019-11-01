@@ -30,13 +30,6 @@ const getPlugins = (withCopy = false) => [
     { files: 'src/loader.js', dest: 'public' }
   ], { verbose: !production, watch: !production }),
 
-  production && babel({
-    babelrc: false,
-    ...babelConfig.default,
-    "exclude": [ 'node_modules/**' ],
-    "include": [ 'node_modules/svelte/**' ],
-  }),
-
   scssModules({
     output: async (styles, styleNodes) => {
       const filename = 'public/main.css'
@@ -60,6 +53,14 @@ const getPlugins = (withCopy = false) => [
     preprocess: autoPreprocess()
   }),
 
+  babel({
+    babelrc: false,
+    ...babelConfig.default,
+    extensions: ['.js', '.mjs', '.html', '.svelte'],
+    exclude: [ 'node_modules/core-js/**' ],
+    // include: [ 'node_modules/svelte/**' ],
+  }),
+
   // If you have external dependencies installed from
   // npm, you'll most likely need these plugins. In
   // some cases you'll need additional configuration —
@@ -70,7 +71,7 @@ const getPlugins = (withCopy = false) => [
     dedupe: importee =>
       importee === "svelte" ||
       importee.startsWith("svelte/") ||
-      importee.startsWith("core-js") ||
+      importee === "core-js" ||
       importee.startsWith("core-js/")
   }),
   commonjs({ extensions: ['.js', '.ts', '.svelte'] }),
@@ -82,31 +83,31 @@ const getPlugins = (withCopy = false) => [
 ]
 
 const outputs = [
+  // {
+  //   input: 'src/index.es.ts',
+  //   output: {
+  //     sourcemap: true,
+  //     dir: 'public/esm',
+  //     format: 'esm',
+  //   },
+  //   plugins: getPlugins(true),
+  //   watch: {
+  //     clearScreen: false
+  //   }
+  // },
   {
-    input: 'src/index.es.ts',
+    input: 'src/index.ts',
     output: {
-      sourcemap: 'inline',
-      dir: 'public/esm',
-      format: 'esm',
+      sourcemap: true,
+      dir: 'public/system',
+      format: 'system',
+      strict: false
     },
     plugins: getPlugins(true),
     watch: {
       clearScreen: false
-    }
+    },
   }
 ]
-
-production && outputs.push({
-  input: 'src/index.ts',
-  output: {
-    sourcemap: 'inline',
-    dir: 'public/system',
-    format: 'system'
-  },
-  plugins: getPlugins(),
-  watch: {
-    clearScreen: false
-  }
-})
 
 export default outputs;

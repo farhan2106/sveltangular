@@ -1,7 +1,1 @@
-export default () => {
-  return {
-    someMethod() {
-      console.log('doSomething')
-    }
-  }
-}
+export default function () {}

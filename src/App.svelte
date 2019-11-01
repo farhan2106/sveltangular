@@ -11,7 +11,11 @@
 <style>
 </style>
 
-<Router url="{url}">
-  <Route path="about"><Loadable apiService={SomeService()} loader={() => import('./pages/AboutUs.svelte')} /></Route>
-  <Route path="/"><HomePage apiService={SomeService()} /></Route>
-</Router>
+<template>
+  asdasdasd
+  <Router url="{url}">
+
+    <Route path="about"><Loadable apiService={SomeService()} loader={() => import('./pages/AboutUs.svelte')} /></Route>
+    <Route path="/"><HomePage apiService={SomeService()} /></Route>
+  </Router>
+</template>
