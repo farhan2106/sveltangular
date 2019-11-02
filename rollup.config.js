@@ -57,7 +57,11 @@ const getPlugins = (withCopy = false) => [
     babelrc: false,
     ...babelConfig.default,
     extensions: ['.js', '.mjs', '.html', '.svelte'],
-    exclude: [ 'node_modules/core-js/**', 'node_modules/regenerator-runtime/**' ]
+    exclude: [
+      'node_modules/core-js/**',
+      'node_modules/regenerator-runtime/**',
+      'node_modules/page/**'
+    ]
   }),
 
   // If you have external dependencies installed from
@@ -73,7 +77,9 @@ const getPlugins = (withCopy = false) => [
       importee === "core-js" ||
       importee.startsWith("core-js/")
   }),
-  commonjs({ extensions: ['.js', '.ts', '.svelte'] }),
+  commonjs({
+    extensions: ['.js', '.ts', '.svelte']
+  }),
   typescript(),
 
   // Watch the `public` directory and refresh the

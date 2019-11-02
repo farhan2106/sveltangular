@@ -1,5 +1,4 @@
 <script lang="typescript">
-  import { link } from "svelte-routing";link;
 </script>
 
 <style>
@@ -20,11 +19,11 @@
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a href="/" use:link class="navbar-item">
+        <a href="/" class="navbar-item">
           Home
         </a>
 
-        <a href="/about" use:link class="navbar-item">
+        <a href="/about" class="navbar-item">
           About Us
         </a>
       </div>
