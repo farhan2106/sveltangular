@@ -6,6 +6,7 @@ import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import scssModules from 'rollup-plugin-scss';
 import typescript from "rollup-plugin-typescript2";
+import { terser } from "rollup-plugin-terser";
 import autoPreprocess from 'svelte-preprocess'
 import fs from 'fs';
 import postcss from 'postcss'
@@ -81,6 +82,8 @@ const getPlugins = (withCopy = false) => [
     extensions: ['.js', '.ts', '.svelte']
   }),
   typescript(),
+
+  production && terser(),
 
   // Watch the `public` directory and refresh the
   // browser on changes when not in production
