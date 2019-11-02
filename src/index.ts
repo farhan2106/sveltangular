@@ -4,7 +4,6 @@ import 'core-js';
 
 // needed for ie 11
 import '@webcomponents/custom-elements'; 
-// import '@webcomponents/webcomponentsjs';
 
 // app stuff
 import './assets/styles/main.sass';

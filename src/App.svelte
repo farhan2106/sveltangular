@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
   import { Router, Route } from 'svelte-routing';
   import Loadable from 'svelte-loadable'
   import SomeService from './services/SomeService'
@@ -12,9 +12,7 @@
 </style>
 
 <template>
-  asdasdasd
   <Router url="{url}">
-
     <Route path="about"><Loadable apiService={SomeService()} loader={() => import('./pages/AboutUs.svelte')} /></Route>
     <Route path="/"><HomePage apiService={SomeService()} /></Route>
   </Router>
