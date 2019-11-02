@@ -16,8 +16,8 @@ function supportsDynamicImport() {
 }
 
 if (supportsDynamicImport()) {
-  document.write('<link rel="preload" href="esm/index.es.js" as="script">');
-  document.write('<script type="module" src="esm/index.es.js"><\/script>');
+  document.write('<link rel="preload" href="esm/index.js" as="script">');
+  document.write('<script type="module" src="esm/index.js"><\/script>');
 } else {
   if (typeof Promise === 'undefined') {
     document.write('<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');

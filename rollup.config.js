@@ -89,7 +89,7 @@ const getPlugins = (withCopy = false) => [
 
 const outputs = [
   {
-    input: 'src/index.es.ts',
+    input: 'src/index.ts',
     output: {
       sourcemap: true,
       dir: 'public/esm',
