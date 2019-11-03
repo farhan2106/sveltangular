@@ -49,7 +49,7 @@ const getPlugins = (withCopy = false) => [
       style: postCssTransformer
     },
     css: css => {
-      css.write('public/index.css');
+      css.write('public/components.css');
     },
     preprocess: autoPreprocess()
   }),

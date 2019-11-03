@@ -4,19 +4,52 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sveltangular</title>
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script><!-- Decreases performances -->
+
+  <!-- Decreases performance if uncommented -->
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
 
   <title>Svelte app</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preload" crossorigin="anonymous" href="main.css" as="style">
-  <link rel="preload" crossorigin="anonymous" href="index.css" as="style">
-  <link rel="preload" crossorigin="anonymous" href="loader.js" as="script">
 
   <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="components.css">
   <script src="https://unpkg.com/history"></script>
-  <script src="loader.js"></script>
+
+  <script>
+    function supportsStaticImport() {
+      const script = document.createElement('script');
+      return 'noModule' in script; 
+    }
+
+    function supportsDynamicImport() {
+      try {
+        new Function('import("")');
+        return true;
+      }
+      catch (err) {
+        return false;
+      }
+    }
+
+    if (supportsStaticImport()) {
+      document.write('<script type="module" src="esm/index.js"><\/script>');
+    } else {
+      if (typeof Promise === 'undefined') {
+        document.write('<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.0/bluebird.min.js"><\/script>');
+      }
+      if (typeof fetch === 'undefined') {
+        document.write('<script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
+      }
+      document.write('<script crossorigin="anonymous" src="https://unpkg.com/systemjs@6.0.0/dist/s.min.js"><\/script>');
+      document.write('<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.2/extras/named-register.min.js"><\/script>');
+      window.onload = function (e) {
+        System.import("/system/index.js").catch(function (e) {
+          console.error(e)
+        });
+      };
+    }
+  </script>
 </head>
 <body>
 </body>
