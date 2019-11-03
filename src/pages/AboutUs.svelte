@@ -1,6 +1,10 @@
 <script lang="typescript">
-  import Navbar from './../components/Navbar.svelte';Navbar;
+  import Navbar from './../components/Navbar.svelte';
+
   export let apiService: any;
+  export let name: string;
+
+  apiService.someMethod()
 </script>
 
 <template>
@@ -8,7 +12,7 @@
   <section class="section">
     <div class="container is-fluid">
       <div class="columns">
-        <h3>About Us</h3>
+        <h3>About Us: Hello {name}</h3>
       </div>
     </div>
   </section>

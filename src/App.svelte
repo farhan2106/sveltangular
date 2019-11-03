@@ -4,20 +4,20 @@
 
   export let name: any;
 
-  let pageProps: any = {
-    component: import('./pages/Home.svelte')
-  };
+  let pageProps: any = {};
 
   router('/', () => {
     pageProps = {
       component: import('./pages/Home.svelte'),
-      name: 'Frank' // overwrites name prop in main.js
+      name
     };
   });
 
   router('/about', () => {
     pageProps = {
       component: import('./pages/AboutUs.svelte'),
+      name: 'John',
+      apiService: SomeService()
     };
   });
 

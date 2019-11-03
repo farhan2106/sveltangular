@@ -1,7 +1,3 @@
-// babel-preset
-import 'core-js';
-import 'regenerator-runtime/runtime';
-
 // needed for ie 11
 import '@webcomponents/custom-elements'; 
 
@@ -12,6 +8,6 @@ import App from './App.svelte'
 new App({
   target: document.body,
   props: {
-    name: 'world'
+    name: 'User'
   }
 });

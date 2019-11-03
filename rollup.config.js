@@ -57,7 +57,7 @@ const getPlugins = (withCopy = false) => [
   babel({
     babelrc: false,
     ...babelConfig.default,
-    extensions: ['.js', '.mjs', '.html', '.svelte'],
+    extensions: ['.js', '.mjs', '.html', '.svelte', '.ts'],
     exclude: [
       'node_modules/core-js/**',
       'node_modules/regenerator-runtime/**',
