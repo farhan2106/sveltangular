@@ -12,6 +12,7 @@ module.exports = {
     "@babel/plugin-transform-destructuring",
     "@babel/transform-arrow-functions",
     "@babel/plugin-transform-parameters",
+    "@babel/plugin-syntax-dynamic-import",
     "transform-custom-element-classes"
   ],
 }
