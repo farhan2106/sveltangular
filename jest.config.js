@@ -173,7 +173,13 @@ module.exports = {
   "transform": {
     "\\.js$": "babel-jest",
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.svelte$': ['jest-transform-svelte', { preprocess: autoPreprocess() }]
+    '^.+\\.svelte$': ['jest-transform-svelte', {
+      preprocess: autoPreprocess({
+        typescript: {
+          transpileOnly: true
+        }
+      })
+    }]
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
