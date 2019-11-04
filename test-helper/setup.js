@@ -41,14 +41,10 @@ const process = (options = {}) => async (filename) => {
 
 module.exports = function () {
   return new Promise(function (resolveMain, rejectMain) {
-    glob("src/**/*.svelte", undefined, async (er, files) => {
-      files.forEach(f => {
-        const compiledFile = f.replace('.svelte', '.compiled.svelte')
-        if (fs.existsSync(compiledFile))
-          fs.unlinkSync(compiledFile)
-      })
-
-      files = files.filter(f => !f.includes('compiled'))
+    glob("src/**/*.svelte", undefined, async (err, files) => {
+      if (err) {
+        return rejectMain()
+      }
 
       try {
         const promises = files.map(f => new Promise((resolve, reject) => {

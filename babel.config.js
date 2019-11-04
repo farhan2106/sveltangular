@@ -1,6 +1,5 @@
 module.exports = (api) => {
   const isTest = api.env('test');
-  console.log(isTest)
   if (isTest) {
     return {
       "presets": [
