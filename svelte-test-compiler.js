@@ -2,6 +2,13 @@ const svelte = require('svelte/compiler');
 const fs = require('fs')
 const glob = require('glob')
 
+// Update your preprocess config
+const preprocess = require('svelte-preprocess')({
+  typescript: {
+    transpileOnly: true
+  }
+})
+
 const styleRegex = /<style[^>]*>[\S\s]*?<\/style>/g;
 
 const process = (options = {}) => async (filename) => {
@@ -46,11 +53,7 @@ module.exports = function () {
       try {
         const promises = files.map(f => new Promise((resolve, reject) => {
           process({
-            preprocess: require('svelte-preprocess')({
-              typescript: {
-                transpileOnly: true
-              }
-            })
+            preprocess
           })(f)
           .then(x => resolve({ ...x, filename: f}))
           .catch(e => reject(e))
