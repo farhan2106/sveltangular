@@ -24,7 +24,8 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    "src/**/**.{js, ts, svelte}"
+    "src/**/**.{js, ts, svelte}",
+    "src/**/**.compiled.svelte"
   ],
 
   // The directory where Jest should output its coverage files
@@ -56,7 +57,7 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: null,
+  globalSetup: './svelte-test-compiler',
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: null,
@@ -175,7 +176,7 @@ module.exports = {
   "transform": {
     "\\.js$": "babel-jest",
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.svelte$': ['jest-transform-svelte'/*, { preprocess: sveltePreprocess() }*/]
+    '^.+\\.svelte$': 'jest-transform-svelte'
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
