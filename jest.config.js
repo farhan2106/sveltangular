@@ -23,7 +23,9 @@ module.exports = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: null,
+  collectCoverageFrom: [
+    "src/**/**.{js, ts, svelte}"
+  ],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
@@ -172,14 +174,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   "transform": {
     "\\.js$": "babel-jest",
-    '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.svelte$': ['jest-transform-svelte', {
-      preprocess: autoPreprocess({
-        typescript: {
-          transpileOnly: true
-        }
-      })
-    }]
+    '^.+\\.tsx?$': 'ts-jest'
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
