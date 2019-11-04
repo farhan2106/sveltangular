@@ -172,6 +172,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   "transform": {
     "\\.js$": "babel-jest",
+    '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.svelte$': ['jest-transform-svelte', { preprocess: autoPreprocess() }]
   },
 
