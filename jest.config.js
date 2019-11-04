@@ -20,7 +20,7 @@ module.exports = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: false, // Disabling first to figure out: "Support for the experimental syntax 'dynamicImport' isn't currently enabled (280:20):"
+  collectCoverage: true, // Disabling first to figure out: "Support for the experimental syntax 'dynamicImport' isn't currently enabled (280:20):"
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
