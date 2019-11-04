@@ -1,0 +1,6 @@
+import {{ pascalCase name }} from './{{ name }}';
+
+test('should be able to add', () => {
+  const serviceInstance = {{ pascalCase name }}()
+  expect(serviceInstance.add(1, 1)).toBe(2);
+});

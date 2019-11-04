@@ -57,6 +57,7 @@
     "rollup-plugin-typescript2": "^0.24.3",
     "sirv-cli": "^0.4.5",
     "svelte-preprocess": "^3.2.1",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {

@@ -40,16 +40,16 @@ module.exports = function (plop) {
     prompts: [{
       type: 'input',
       name: 'name',
-      message: 'services name please'
+      message: 'service name please'
     }],
     actions: [{
       type: 'add',
-      path: 'src/pages/{{name}}.svelte',
-      templateFile: '_templates/pages.hbs'
+      path: 'src/services/{{name}}.ts',
+      templateFile: '_templates/services.hbs'
     }, {
       type: 'add',
-      path: 'src/pages/{{name}}.test.js',
-      templateFile: '_templates/pages_test.hbs'
+      path: 'src/services/{{name}}.test.js',
+      templateFile: '_templates/services_test.hbs'
     }]
   });
 };
