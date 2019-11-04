@@ -1,0 +1,64 @@
+const svelte = require('svelte/compiler');
+const fs = require('fs')
+const glob = require('glob')
+
+const styleRegex = /<style[^>]*>[\S\s]*?<\/style>/g;
+
+const process = (options = {}) => async (filename) => {
+  const { preprocess, noStyles } = options;
+  const source = fs.readFileSync(filename).toString()
+
+  // strip out <style> tags to prevent errors with node-sass.
+  const normalized = noStyles !== false ? source.replace(styleRegex, '') : source;
+  
+  let preprocessed;
+
+  if (preprocess) {
+    try {
+      const { code } = await svelte
+        .preprocess(normalized, preprocess || {}, {
+          filename
+        })
+      preprocessed = code
+    } catch (e) {
+      console.error(e)
+    }
+  } else {
+    preprocessed = source;
+  }
+
+  return {
+    code: preprocessed
+  };
+};
+
+glob("src/**/*.svelte", undefined, async (er, files) => {
+  files.forEach(f => {
+    const compiledFile = f.replace('.svelte', '.compiled.svelte')
+    if (fs.existsSync(compiledFile))
+      fs.unlinkSync(compiledFile)
+  })
+
+  files = files.filter(f => !f.includes('compiled'))
+
+  try {
+    const promises = files.map(f => new Promise((resolve, reject) => {
+      process({
+        preprocess: require('svelte-preprocess')({
+          typescript: {
+            transpileOnly: true
+          }
+        })
+      })(f)
+      .then(x => resolve({ ...x, filename: f}))
+      .catch(e => reject(e))
+    }))
+
+    const codes = await Promise.all(promises)
+    codes.forEach(({ code, filename }) => {
+      fs.writeFileSync(filename.replace('.svelte', '.compiled.svelte'), code)
+    });
+  } catch (e) {
+    console.error(e)
+  }
+})

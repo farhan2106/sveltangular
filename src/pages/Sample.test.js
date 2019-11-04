@@ -1,8 +1,6 @@
-import path from 'path'
-import testHelper from './../../test-helper';
+import Sample from './Sample.compiled.svelte'
 
-test('component should load', async () => {
-  const Sample = await testHelper(path.resolve(__dirname, 'Sample.svelte'))
+test('component should load', () => {
   new Sample({
     target: document.body
   })
