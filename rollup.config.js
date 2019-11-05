@@ -64,7 +64,7 @@ const getPlugins = (withCopy = false) => [
     exclude: [
       'node_modules/core-js/**',
       'node_modules/regenerator-runtime/**',
-      'node_modules/page/**', // Fix: https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
+      // 'node_modules/page/**', // Fix: https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
     ]
   }),
 
@@ -112,8 +112,11 @@ const outputs = [
     watch: {
       clearScreen: false
     }
-  },
-  {
+  }
+]
+
+if (production) {
+  outputs.push({
     input: 'src/index.ts',
     output: {
       sourcemap: true,
@@ -125,7 +128,7 @@ const outputs = [
     watch: {
       clearScreen: false
     },
-  }
-]
+  })
+}
 
 export default outputs;

@@ -1,10 +1,11 @@
 <script lang="typescript">
   import router from './../router';
 
-  function navigate(e) {
-    e.preventDefault()
-    console.log(e.target)
-    router().navigate('home.about');
+  function navigate(e: MouseEvent) {
+    const route = (e.target as HTMLAnchorElement).getAttribute('href')
+    if (route) {
+      router().navigate(route);
+    }
   }
 </script>
 
@@ -26,11 +27,11 @@
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a href="/" on:click={navigate} class="navbar-item">
+        <a href="home" on:click|preventDefault={navigate} class="navbar-item">
           Home
         </a>
 
-        <a href="/about" on:click={navigate} class="navbar-item">
+        <a href="home.about" on:click|preventDefault={navigate} class="navbar-item">
           About Us
         </a>
       </div>

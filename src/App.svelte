@@ -9,24 +9,24 @@
     name
   };
 
-  // router('/', () => {
-  //   pageProps = {
-  //     component: import('./pages/Home.svelte'),
-  //     name
-  //   };
-  // });
-
-  // router('/about', () => {
-  //   pageProps = {
-  //     component: import('./pages/AboutUs.svelte'),
-  //     name: 'John',
-  //     apiService: SomeService()
-  //   };
-  // });
-
-  // router.start();
-
-  router().subscribe((x: any) => console.log(x))
+  router().subscribe((x: any) => {
+    switch (x.route.name) {
+      default:
+      case 'home':
+        pageProps = {
+          component: import('./pages/Home.svelte'),
+          name
+        };
+        break;
+      case 'home.about':
+        pageProps = {
+          component: import('./pages/AboutUs.svelte'),
+          name: 'John',
+          apiService: SomeService()
+        };
+        break;
+    }
+  })
 </script>
 
 <style>
