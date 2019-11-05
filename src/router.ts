@@ -3,7 +3,7 @@ import browserPlugin from 'router5-plugin-browser';
 // import persistentParamsPlugin from 'router5-plugin-persistent-params';
 
 const routes = [
-  { name: 'home',      path: '/' },
+  { name: 'home',       path: '/' },
   { name: 'home.about', path: '/about' }
 ];
 
