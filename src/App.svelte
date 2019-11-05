@@ -1,6 +1,7 @@
 <script lang="typescript">
   import SomeService from './services/SomeService';
   import router from 'page';
+  import './router';
 
   export let name: any;
 
