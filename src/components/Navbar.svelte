@@ -1,4 +1,11 @@
 <script lang="typescript">
+  import router from './../router';
+
+  function navigate(e) {
+    e.preventDefault()
+    console.log(e.target)
+    router().navigate('home.about');
+  }
 </script>
 
 <style>
@@ -19,11 +26,11 @@
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a href="/" class="navbar-item">
+        <a href="/" on:click={navigate} class="navbar-item">
           Home
         </a>
 
-        <a href="/about" class="navbar-item">
+        <a href="/about" on:click={navigate} class="navbar-item">
           About Us
         </a>
       </div>
