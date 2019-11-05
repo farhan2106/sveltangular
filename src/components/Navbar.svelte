@@ -1,12 +1,5 @@
 <script lang="typescript">
-  import router from './../router';
-
-  function navigate(e: MouseEvent) {
-    const route = (e.target as HTMLAnchorElement).getAttribute('href')
-    if (route) {
-      router().navigate(route);
-    }
-  }
+  import { navigate } from './../router';
 </script>
 
 <style>
@@ -27,11 +20,11 @@
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a href="home" on:click|preventDefault={navigate} class="navbar-item">
+        <a href="home" use:navigate class="navbar-item">
           Home
         </a>
 
-        <a href="home.about" on:click|preventDefault={navigate} class="navbar-item">
+        <a href="home.about" use:navigate class="navbar-item">
           About Us
         </a>
       </div>
