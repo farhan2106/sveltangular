@@ -18,5 +18,9 @@ Svelte skeleton project for your next SPA with batteries included.
 
 ## Future Ideas
 
-* Module system like angular? :stuck_out_tongue_closed_eyes:
 * Typescript annotations?
+https://router5.js.org
+https://github.com/alshdavid/crayon
+http://inversify.io/
+https://github.com/thiagobustamante/typescript-ioc
+https://github.com/microsoft/tsyringe
