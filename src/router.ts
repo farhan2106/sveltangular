@@ -16,6 +16,25 @@ router.usePlugin(
   })
 )
 
+export const navigate = (node: HTMLAnchorElement) => {
+  // the node has been mounted in the DOM
+  function nav(e: MouseEvent) {
+    e.preventDefault()
+    const route = (e.target as HTMLAnchorElement).getAttribute('href')
+    if (route) {
+      router.navigate(route);
+    }
+  }
+
+  node.addEventListener("click", nav); 
+
+  return {
+    destroy() {
+      node.removeEventListener("click", nav);
+    }
+  };
+}
+
 export default () => {
   if (!router.isStarted()) {
     router.start();
