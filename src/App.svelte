@@ -1,28 +1,32 @@
 <script lang="typescript">
   import SomeService from './services/SomeService';
-  import router from 'page';
-  import './router';
+  import router from './router';
 
   export let name: any;
 
-  let pageProps: any = {};
+  let pageProps: any = {
+    component: import('./pages/Home.svelte'),
+    name
+  };
 
-  router('/', () => {
-    pageProps = {
-      component: import('./pages/Home.svelte'),
-      name
-    };
-  });
+  // router('/', () => {
+  //   pageProps = {
+  //     component: import('./pages/Home.svelte'),
+  //     name
+  //   };
+  // });
 
-  router('/about', () => {
-    pageProps = {
-      component: import('./pages/AboutUs.svelte'),
-      name: 'John',
-      apiService: SomeService()
-    };
-  });
+  // router('/about', () => {
+  //   pageProps = {
+  //     component: import('./pages/AboutUs.svelte'),
+  //     name: 'John',
+  //     apiService: SomeService()
+  //   };
+  // });
 
-  router.start();
+  // router.start();
+
+  router().subscribe((x: any) => console.log(x))
 </script>
 
 <style>

@@ -43,6 +43,8 @@ const getPlugins = (withCopy = false) => [
     includePaths: [ 'node_modules/' ]
   }),
 
+  typescript(),
+
   svelte({
     legacy: production,
     dev: !production,
@@ -62,17 +64,18 @@ const getPlugins = (withCopy = false) => [
     exclude: [
       'node_modules/core-js/**',
       'node_modules/regenerator-runtime/**',
-      'node_modules/page/**'
+      'node_modules/page/**', // Fix: https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
     ]
   }),
 
+  // Fix: https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
   // Use this just in case namedExports in rollup-plugin-commonjs is not working
-  // alias({
-  //   resolve: ['.jsx', '.js'],
-  //   entries:[
-  //     { find:'search-params', replacement: 'node_modules/search-params/dist/es/index.js' }
-  //   ]
-  // }),
+  alias({
+    resolve: ['.jsx', '.js'],
+    entries:[
+      { find:'search-params', replacement: 'node_modules/search-params/dist/es/index.js' }
+    ]
+  }),
 
   resolve({
     browser: true,
@@ -85,10 +88,10 @@ const getPlugins = (withCopy = false) => [
   }),
 
   commonjs({
-    extensions: ['.js', '.ts', '.svelte']
+    include: 'node_modules/**',
+    extensions: ['.js', '.ts', '.svelte'],
+    namedExports: {} // Fix: https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
   }),
-
-  typescript(),
 
   production && terser(),
 

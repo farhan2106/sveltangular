@@ -3,6 +3,7 @@
 
   export let apiService: any;
   export let name: string;
+  
 </script>
 
 <template>
