@@ -18,7 +18,8 @@ Svelte skeleton project for your next SPA with batteries included.
 
 ## Future Ideas
 
-* Typescript annotations?
+* Please share any "Angulary" features that should be in this repo :smiley:
+
 http://inversify.io/
 https://github.com/thiagobustamante/typescript-ioc
 https://github.com/microsoft/tsyringe
