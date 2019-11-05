@@ -19,7 +19,6 @@ Svelte skeleton project for your next SPA with batteries included.
 ## Future Ideas
 
 * Typescript annotations?
-https://router5.js.org
 http://inversify.io/
 https://github.com/thiagobustamante/typescript-ioc
 https://github.com/microsoft/tsyringe
