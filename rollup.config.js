@@ -7,7 +7,8 @@ import livereload from "rollup-plugin-livereload";
 import scssModules from 'rollup-plugin-scss';
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
-import autoPreprocess from 'svelte-preprocess'
+import autoPreprocess from 'svelte-preprocess';
+import alias from 'rollup-plugin-alias';
 import fs from 'fs';
 import postcss from 'postcss'
 const babelConfig = require('./babel.config');
@@ -65,22 +66,28 @@ const getPlugins = (withCopy = false) => [
     ]
   }),
 
-  // If you have external dependencies installed from
-  // npm, you'll most likely need these plugins. In
-  // some cases you'll need additional configuration —
-  // consult the documentation for details:
-  // https://github.com/rollup/rollup-plugin-commonjs
+  // Use this just in case namedExports in rollup-plugin-commonjs is not working
+  // alias({
+  //   resolve: ['.jsx', '.js'],
+  //   entries:[
+  //     { find:'search-params', replacement: 'node_modules/search-params/dist/es/index.js' }
+  //   ]
+  // }),
+
   resolve({
     browser: true,
+    mainFields: ['module', 'main', 'jsnext:main'],
     dedupe: importee =>
       importee === "svelte" ||
       importee.startsWith("svelte/") ||
       importee === "core-js" ||
       importee.startsWith("core-js/")
   }),
+
   commonjs({
     extensions: ['.js', '.ts', '.svelte']
   }),
+
   typescript(),
 
   production && terser(),
