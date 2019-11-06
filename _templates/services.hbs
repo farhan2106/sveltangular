@@ -1,3 +1,10 @@
-export default () => ({
-  add: (x: number, y: number) => (x + y)
-})
+import { injectable } from "tsyringe";
+
+@injectable()
+export class {{ pascalCase name }} {
+  constructor() {}
+
+  add (x: number, y: number) {
+    return x + y
+  }
+}
