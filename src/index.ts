@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 // needed for ie 11
 import '@webcomponents/custom-elements'; 
 
