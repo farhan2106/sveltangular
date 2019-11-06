@@ -33,6 +33,9 @@ module.exports = {
   // A path to a module which exports an async function that is triggered once after all test suites
   globalTeardown: './../test-helper/teardown',
 
+  // The paths to modules that run some code to configure or set up the testing environment before each test
+  setupFiles: ['../test-helper/setupFiles'],
+
   // An array of file extensions your modules use
   moduleFileExtensions: [
     "js",
@@ -137,9 +140,6 @@ module.exports = {
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
-
-  // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
