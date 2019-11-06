@@ -8,6 +8,7 @@ Svelte skeleton project for your next SPA with batteries included.
 * Router with [Router5](https://router5.js.org/)
 * Typescript enabled via [svelte-preprocess](https://www.npmjs.com/package/svelte-preprocess)
 * Schematics / Generators via [plop](https://plopjs.com/)
+* IOC & Dependency Injection via [tsyringe](https://github.com/microsoft/tsyringe)
 
 ## Useful commands
 
@@ -19,7 +20,3 @@ Svelte skeleton project for your next SPA with batteries included.
 ## Future Ideas
 
 * Please share any "Angulary" features that should be in this repo :smiley:
-
-http://inversify.io/
-https://github.com/thiagobustamante/typescript-ioc
-https://github.com/microsoft/tsyringe
